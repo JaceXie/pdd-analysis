@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDD Holdings 深度分析 — 巴菲特神谕分析师</title>
+<meta name="description" content="融合巴菲特投资哲学与现代多维分析框架的PDD Holdings（拼多多）深度分析报告">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   Morandi Palette — Light & Dark Themes
+   ═══════════════════════════════════════ */
+
+:root {
+  /* ── Light Theme (Morandi warm) ── */
+  --bg: #F2EDE8;
+  --bg-alt: #EBE4DD;
+  --surface: #FFFFFF;
+  --surface-hover: #F9F6F3;
+  --border: #D8CFCA;
+  --border-accent: #C4A882;
+  --text: #4A433E;
+  --text-secondary: #7A726B;
+  --text-dim: #A09890;
+  --heading: #3A3330;
+
+  /* Morandi Accents */
+  --morandi-rose: #C9A9A0;
+  --morandi-sage: #A3B0A0;
+  --morandi-sand: #C4A882;
+  --morandi-blue: #9EB0BC;
+  --morandi-mauve: #B0A0B0;
+  --morandi-clay: #BEA898;
+  --morandi-olive: #A0A890;
+  --morandi-stone: #B0AAA0;
+
+  --accent: #8B7355;
+  --accent-light: rgba(139, 115, 85, 0.08);
+  --accent-border: rgba(139, 115, 85, 0.2);
+
+  /* Semantic */
+  --green: #7A9E7E;
+  --green-bg: rgba(122,158,126,0.1);
+  --red: #BF7B6E;
+  --red-bg: rgba(191,123,110,0.1);
+  --yellow: #C4A060;
+  --yellow-bg: rgba(196,160,96,0.1);
+  --blue: #7E9BB0;
+  --blue-bg: rgba(126,155,176,0.1);
+
+  /* Table */
+  --table-header-bg: #EDE7E1;
+  --table-stripe: rgba(0,0,0,0.02);
+  --table-hover: rgba(139,115,85,0.06);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(74,67,62,0.06);
+  --shadow-md: 0 4px 12px rgba(74,67,62,0.08);
+  --shadow-lg: 0 8px 32px rgba(74,67,62,0.1);
+
+  /* Badge */
+  --badge-buy-bg: rgba(122,158,126,0.15);
+  --badge-buy-text: #5A7E5E;
+  --badge-sell-bg: rgba(191,123,110,0.15);
+  --badge-sell-text: #9E5A4E;
+  --badge-hold-bg: rgba(196,160,96,0.15);
+  --badge-hold-text: #8E7030;
+
+  /* Layout */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --content-width: 900px;
+  --sidebar-width: 260px;
+}
+
+[data-theme="dark"] {
+  --bg: #262320;
+  --bg-alt: #2E2A27;
+  --surface: #33302D;
+  --surface-hover: #3B3734;
+  --border: #4A4540;
+  --border-accent: #8B7355;
+  --text: #E0D8D0;
+  --text-secondary: #B0A89E;
+  --text-dim: #807870;
+  --heading: #F0E8E0;
+
+  --accent: #C4A882;
+  --accent-light: rgba(196,168,130,0.1);
+  --accent-border: rgba(196,168,130,0.25);
+
+  --morandi-rose: #C9A9A0;
+  --morandi-sage: #8EA088;
+  --morandi-sand: #C4A882;
+  --morandi-blue: #8AA0B0;
+  --morandi-mauve: #A090A0;
+
+  --green: #8EB892;
+  --green-bg: rgba(142,184,146,0.12);
+  --red: #D08878;
+  --red-bg: rgba(208,136,120,0.12);
+  --yellow: #D4B070;
+  --yellow-bg: rgba(212,176,112,0.12);
+  --blue: #8EAEC0;
+  --blue-bg: rgba(142,174,192,0.12);
+
+  --table-header-bg: #3B3734;
+  --table-stripe: rgba(255,255,255,0.02);
+  --table-hover: rgba(196,168,130,0.08);
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.25);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.3);
+
+  --badge-buy-bg: rgba(142,184,146,0.18);
+  --badge-buy-text: #8EB892;
+  --badge-sell-bg: rgba(208,136,120,0.18);
+  --badge-sell-text: #D08878;
+  --badge-hold-bg: rgba(212,176,112,0.18);
+  --badge-hold-text: #D4B070;
+}
+
+/* ═══════════════════════════════
+   Base Reset & Typography
+   ═══════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+/* ═══════════════════════════════
+   Top Navigation Bar
+   ═══════════════════════════════ */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.4s, border-color 0.3s;
+}
+
+[data-theme="light"] .topbar { background: rgba(255,255,255,0.9); }
+[data-theme="dark"] .topbar { background: rgba(51,48,45,0.9); }
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.topbar-brand .logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--morandi-sand), var(--morandi-rose));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-meta {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-right: 12px;
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.25s;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════
+   Layout: Sidebar + Content
+   ═══════════════════════════════ */
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 72px 2rem 4rem;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 88px);
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.sidebar-nav { list-style: none; }
+
+.sidebar-nav li {
+  margin-bottom: 2px;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+  line-height: 1.5;
+}
+
+.sidebar-nav a:hover {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.sidebar-nav a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--accent-light);
+  font-weight: 500;
+}
+
+.sidebar-nav .nav-group {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  padding: 16px 12px 6px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--content-width);
+}
+
+/* ═══════════════════════════════
+   Hero Section
+   ═══════════════════════════════ */
+
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--morandi-sand), var(--morandi-rose), var(--morandi-sage), var(--morandi-blue));
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  padding: 4px 14px;
+  margin-bottom: 1.25rem;
+}
+
+.hero h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.hero-stat .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.hero-stat .change {
+  font-size: 0.72rem;
+  margin-top: 2px;
+}
+
+.change.up { color: var(--green); }
+.change.down { color: var(--red); }
+
+/* ═══════════════════════════════
+   Verdict Card
+   ═══════════════════════════════ */
+
+.verdict {
+  background: linear-gradient(135deg, var(--surface), var(--bg-alt));
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.verdict::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--morandi-sand);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.verdict-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verdict p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.verdict strong {
+  color: var(--heading);
+}
+
+/* ═══════════════════════════════
+   Module Sections
+   ═══════════════════════════════ */
+
+.module {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s;
+}
+
+.module:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.module-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.module-num.n1 { background: rgba(201,169,160,0.2); color: var(--morandi-rose); }
+.module-num.n2 { background: rgba(163,176,160,0.2); color: var(--morandi-sage); }
+.module-num.n3 { background: rgba(196,168,130,0.2); color: var(--morandi-sand); }
+.module-num.n4 { background: rgba(158,176,188,0.2); color: var(--morandi-blue); }
+.module-num.n5 { background: rgba(176,160,176,0.2); color: var(--morandi-mauve); }
+.module-num.n6 { background: rgba(190,168,152,0.2); color: var(--morandi-clay); }
+.module-num.n7 { background: rgba(201,169,160,0.2); color: var(--morandi-rose); }
+.module-num.n8 { background: rgba(163,176,160,0.2); color: var(--morandi-sage); }
+.module-num.n9 { background: rgba(196,168,130,0.2); color: var(--morandi-sand); }
+.module-num.n10 { background: rgba(158,176,188,0.2); color: var(--morandi-blue); }
+.module-num.n11 { background: rgba(191,123,110,0.15); color: var(--red); }
+.module-num.n12 { background: rgba(196,168,130,0.2); color: var(--morandi-sand); }
+
+.module h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.module h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.module h3:first-of-type {
+  margin-top: 0;
+}
+
+.module p, .module li {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.module ul, .module ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.module li {
+  margin-bottom: 0.3rem;
+}
+
+.module strong {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════
+   Tables
+   ═══════════════════════════════ */
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+thead {
+  background: var(--table-header-bg);
+}
+
+th {
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--heading);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.78rem;
+}
+
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+
+tr:nth-child(even) { background: var(--table-stripe); }
+tr:hover { background: var(--table-hover); }
+
+td:first-child { font-weight: 500; color: var(--heading); }
+
+/* Numeric cells */
+.num { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-align: right; }
+th.num { text-align: right; }
+
+/* ═══════════════════════════════
+   Special Elements
+   ═══════════════════════════════ */
+
+.callout {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  border-left: 3px solid;
+}
+
+.callout.info { background: var(--blue-bg); border-color: var(--blue); }
+.callout.success { background: var(--green-bg); border-color: var(--green); }
+.callout.warning { background: var(--yellow-bg); border-color: var(--yellow); }
+.callout.danger { background: var(--red-bg); border-color: var(--red); }
+
+.callout-title {
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge.buy { background: var(--badge-buy-bg); color: var(--badge-buy-text); }
+.badge.sell { background: var(--badge-sell-bg); color: var(--badge-sell-text); }
+.badge.hold { background: var(--badge-hold-bg); color: var(--badge-hold-text); }
+
+.rating-bar {
+  display: flex;
+  gap: 3px;
+  margin: 0.5rem 0;
+}
+
+.rating-bar .bar {
+  height: 6px;
+  border-radius: 3px;
+  flex: 1;
+  background: var(--border);
+  transition: background 0.3s;
+}
+
+.rating-bar .bar.filled { background: var(--morandi-sand); }
+
+.code-block {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 1rem 0;
+  color: var(--text);
+}
+
+.highlight-box {
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+}
+
+.highlight-box .hl-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Moat rating */
+.moat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.moat-item:last-child { border-bottom: none; }
+
+.moat-label { flex: 1; font-size: 0.85rem; font-weight: 500; color: var(--heading); }
+
+.moat-rating {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.moat-rating.wide { background: var(--green-bg); color: var(--green); }
+.moat-rating.narrow { background: var(--yellow-bg); color: var(--yellow); }
+.moat-rating.none { background: var(--red-bg); color: var(--red); }
+
+/* ═══════════════════════════════
+   Scorecard
+   ═══════════════════════════════ */
+
+.scorecard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin: 1rem 0;
+}
+
+.score-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+  gap: 12px;
+}
+
+.score-row .criteria {
+  flex: 1;
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.score-row .score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 42px;
+  text-align: center;
+}
+
+.score-row .dots {
+  display: flex;
+  gap: 4px;
+}
+
+.score-row .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.score-row .dot.filled { background: var(--morandi-sand); }
+
+/* Grade badge */
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.grade-badge.a { background: var(--green-bg); color: var(--green); border: 2px solid var(--green); }
+.grade-badge.b { background: var(--blue-bg); color: var(--blue); border: 2px solid var(--blue); }
+.grade-badge.c { background: var(--yellow-bg); color: var(--yellow); border: 2px solid var(--yellow); }
+
+/* ═══════════════════════════════
+   Decision Box
+   ═══════════════════════════════ */
+
+.decision-box {
+  background: var(--surface);
+  border: 2px solid var(--green);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+.decision-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.decision-rating {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.decision-price {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.decision-price .current {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.decision-price .target {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════
+   Disclaimer
+   ═══════════════════════════════ */
+
+.disclaimer {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.disclaimer strong { color: var(--text-secondary); }
+
+/* ═══════════════════════════════
+   Footer
+   ═══════════════════════════════ */
+
+.page-footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.page-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.page-footer a:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════
+   Back to top
+   ═══════════════════════════════ */
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 100;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ═══════════════════════════════
+   Responsive
+   ═══════════════════════════════ */
+
+@media (max-width: 960px) {
+  .sidebar { display: none; }
+  .layout { padding: 72px 1.25rem 3rem; }
+  .hero, .module { padding: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .layout { padding: 64px 1rem 2rem; }
+  .hero { padding: 1.25rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .module { padding: 1.25rem; }
+  .topbar-meta { display: none; }
+  th, td { padding: 7px 10px; font-size: 0.75rem; }
+}
+
+/* ═══════════════════════════════
+   Print
+   ═══════════════════════════════ */
+@media print {
+  .topbar, .sidebar, .theme-toggle, .back-to-top { display: none !important; }
+  .layout { padding: 0; }
+  .module { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ Top Bar ════════════ -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="topbar-brand">
+      <div class="logo">B</div>
+      <span>巴菲特神谕分析师</span>
+    </a>
+    <div class="topbar-actions">
+      <span class="topbar-meta">2026-04-08 | NASDAQ: PDD</span>
+      <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="Toggle theme">
+        <span id="themeIcon">&#9790;</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════ Main Layout ════════════ -->
+<div class="layout">
+
+  <!-- ──── Sidebar ──── -->
+  <aside class="sidebar">
+    <ul class="sidebar-nav" id="sidebarNav">
+      <li class="nav-group">概览</li>
+      <li><a href="#verdict">巴菲特裁决</a></li>
+      <li><a href="#overview">公司概览</a></li>
+      <li class="nav-group">基本面</li>
+      <li><a href="#management">管理层评估</a></li>
+      <li><a href="#business">商业模式</a></li>
+      <li><a href="#moat">经济护城河</a></li>
+      <li><a href="#financials">财务分析</a></li>
+      <li><a href="#earningscall">电话会分析</a></li>
+      <li class="nav-group">估值与市场</li>
+      <li><a href="#valuation">多模型估值</a></li>
+      <li><a href="#competition">竞争分析</a></li>
+      <li><a href="#technical">技术面</a></li>
+      <li class="nav-group">风险与决策</li>
+      <li><a href="#catalysts">增长催化剂</a></li>
+      <li><a href="#risk">风险矩阵</a></li>
+      <li><a href="#scorecard">巴菲特计分卡</a></li>
+    </ul>
+  </aside>
+
+  <!-- ──── Content ──── -->
+  <main class="content">
+
+    <!-- ══ Hero ══ -->
+    <section class="hero" id="hero">
+      <div class="hero-badge">深度分析报告</div>
+      <h1>PDD Holdings 拼多多</h1>
+      <p class="hero-subtitle">融合巴菲特投资哲学与现代多维分析框架的机构级深度研究</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="label">股价</div>
+          <div class="value">$99.54</div>
+          <div class="change down">52周: $87 - $139</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">市值</div>
+          <div class="value">$1,413亿</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">企业价值</div>
+          <div class="value">$817亿</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">PE (TTM)</div>
+          <div class="value">10.4x</div>
+          <div class="change down">历史中位 ~18x</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">净现金</div>
+          <div class="value">$596亿</div>
+          <div class="change up">$42/股</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">评级</div>
+          <div class="value" style="color:var(--green)">买入</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Verdict ══ -->
+    <section class="verdict" id="verdict">
+      <div class="verdict-title">巴菲特的裁决</div>
+      <p><strong>PDD是一台印钞机，但正在暴风雨中航行。</strong> 这家公司拥有中国电商领域最精简的商业模式、令人羡慕的资产负债表（净现金$596亿，几乎等于半个市值），以及远超同行的盈利能力。但Temu的全球扩张正遭遇美国关税的正面冲击和欧盟监管的侧面夹击——市场恐慌之下，这家年赚近千亿人民币的公司正以不到10倍PE的价格被甩卖。</p>
+      <p style="margin-top:0.75rem"><strong>如果你相信价值投资，这是"别人恐惧时贪婪"的经典教科书案例</strong>——但前提是你能承受暴风雨中的颠簸。</p>
+    </section>
+
+    <!-- ══ Module 1: Overview ══ -->
+    <section class="module" id="overview">
+      <div class="module-header">
+        <div class="module-num n1">01</div>
+        <h2>公司概览与背景</h2>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <tbody>
+            <tr><td>代码 / 交易所</td><td>PDD / NASDAQ</td></tr>
+            <tr><td>市值</td><td class="num">$1,413亿美元</td></tr>
+            <tr><td>企业价值</td><td class="num">$817亿美元</td></tr>
+            <tr><td>行业</td><td>电子商务平台</td></tr>
+            <tr><td>成立时间</td><td>2015年（拼多多）</td></tr>
+            <tr><td>总部</td><td>爱尔兰都柏林（注册）/ 中国上海（运营）</td></tr>
+            <tr><td>员工数</td><td class="num">~17,000人</td></tr>
+            <tr><td>52周价格区间</td><td class="num">$87.11 — $139.41</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>发展历程</h3>
+      <ul>
+        <li><strong>2015年</strong> — 黄峥创立拼多多，主打"社交拼团"模式</li>
+        <li><strong>2018年</strong> — NASDAQ上市，被称为"五环外电商"</li>
+        <li><strong>2020年</strong> — 黄峥卸任CEO，陈磊接任</li>
+        <li><strong>2021年</strong> — 黄峥退任董事长，将投票权委托给董事会</li>
+        <li><strong>2022年9月</strong> — 推出Temu，正式进军海外市场</li>
+        <li><strong>2023年</strong> — Temu爆发式增长，收入同比增长90%</li>
+        <li><strong>2025年12月</strong> — 实行联合CEO制度（陈磊 + 赵佳臻）</li>
+        <li><strong>2026年</strong> — 宣布千亿供应链投资计划，打造"新拼多多"</li>
+      </ul>
+
+      <h3>股权结构</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>股东类型</th><th class="num">持股比例</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>黄峥（创始人）</td><td class="num">~26.5%</td><td>通过BVI实体Walnut Street持有</td></tr>
+            <tr><td>内部人合计</td><td class="num">31.38%</td><td>含管理团队</td></tr>
+            <tr><td>机构投资者</td><td class="num">29.98%</td><td>Baillie Gifford, BlackRock, Vanguard等</td></tr>
+            <tr><td>其他公众</td><td class="num">~38.6%</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>公司采用<strong>双重股权结构</strong>：A类股每股1票，B类股每股10票。黄峥虽已退出日常管理，但通过B类股仍有重大影响力。</p>
+    </section>
+
+    <!-- ══ Module 2: Management ══ -->
+    <section class="module" id="management">
+      <div class="module-header">
+        <div class="module-num n2">02</div>
+        <h2>管理层评估</h2>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>姓名</th><th>职位</th><th>背景</th></tr></thead>
+          <tbody>
+            <tr><td>陈磊</td><td>联合董事长兼联合CEO</td><td>清华CS本科、威斯康星大学CS博士，PDD联合创始人</td></tr>
+            <tr><td>赵佳臻</td><td>联合董事长兼联合CEO</td><td>PDD联合创始人，创建多多买菜，主管供应链</td></tr>
+            <tr><td>刘珺</td><td>财务VP</td><td>负责财务管理</td></tr>
+            <tr><td>肖军运</td><td>运营高级VP</td><td>负责平台运营</td></tr>
+            <tr><td>郑振伟</td><td>产品开发高级VP</td><td>负责产品和技术</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>巴菲特测试：他们是主人翁型经理人吗？</h3>
+      <p><strong>部分是。</strong> 陈磊和赵佳臻都是联合创始人，对公司有深厚的情感投入。但真正的"老板"是黄峥——他持有26.5%股权却已退出管理层。好的方面是，创始团队仍在掌舵；不好的方面是，最大股东和实际管理层之间存在一定的分离。</p>
+
+      <div class="table-wrapper" style="margin-top:1rem">
+        <table>
+          <thead><tr><th>维度</th><th>评估</th><th class="num">评分</th></tr></thead>
+          <tbody>
+            <tr><td>资本配置能力</td><td>$596亿净现金未盲目并购，千亿供应链投资体现长期思维。但无分红/回购计划是减分项。</td><td class="num">B</td></tr>
+            <tr><td>坦诚程度</td><td>电话会明确表示"利润率波动将成常态"，承认面临挑战。比多数中概公司坦诚得多。</td><td class="num">A-</td></tr>
+            <tr><td>利益绑定</td><td>黄峥持股26.5%（~$370亿），创始团队有重大持股。真正的主人翁经营。</td><td class="num">A</td></tr>
+            <tr><td>历史记录</td><td>全球化扩张已兑现（90+市场），但未预见de minimis政策变化冲击。</td><td class="num">B+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ Module 3: Business Model ══ -->
+    <section class="module" id="business">
+      <div class="module-header">
+        <div class="module-num n3">03</div>
+        <h2>商业模式深度解析</h2>
+      </div>
+
+      <div class="highlight-box">
+        <div class="hl-label">巴菲特的"一句话测试"</div>
+        <p><strong>PDD是中国最大的"从工厂直达消费者"的电商平台，通过聚合海量需求来压低价格，国内叫拼多多，海外叫Temu。</strong></p>
+        <p style="margin-top:0.5rem;color:var(--green);font-size:0.82rem;font-weight:600">&#10003; 通过测试。模式清晰，一句话就能说明白。</p>
+      </div>
+
+      <h3>收入模型</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>收入类型</th><th class="num">FY2025占比</th><th class="num">Q4增长率</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>在线营销服务</td><td class="num">~48%</td><td class="num">+5%</td><td>商家在平台投放广告和搜索排名的费用</td></tr>
+            <tr><td>交易服务</td><td class="num">~52%</td><td class="num">+19%</td><td>多多买菜佣金 + Temu履约和支付手续费</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>C2M模式（Consumer-to-Manufacturer）</h3>
+      <p>传统零售链条是：工厂 → 经销商 → 批发商 → 零售商 → 消费者。PDD砍掉中间所有环节，变成：<strong>工厂 → PDD平台 → 消费者</strong>。</p>
+      <ul>
+        <li>相比竞争对手保持 <strong>15-30%的价格优势</strong></li>
+        <li>库存浪费大幅减少</li>
+        <li>工厂获得可预测的订单量</li>
+      </ul>
+
+      <h3>三大业务板块</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>业务</th><th>定位</th><th>规模</th></tr></thead>
+          <tbody>
+            <tr><td>拼多多主站</td><td>中国第二大电商平台，GMV市占率~23%</td><td>连接1600万+农户与城市消费者</td></tr>
+            <tr><td>Temu</td><td>海外极致性价比电商</td><td>覆盖90+国家和地区</td></tr>
+            <tr><td>多多买菜</td><td>社区团购/生鲜配送</td><td>以社区为单位的次日达</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">人效比惊人</div>
+        ~17,000人管理4,300亿+元人民币收入。人均创收约2,540万元/年。这是阿里巴巴的5-6倍。
+      </div>
+    </section>
+
+    <!-- ══ Module 4: Moat ══ -->
+    <section class="module" id="moat">
+      <div class="module-header">
+        <div class="module-num n4">04</div>
+        <h2>经济护城河分析</h2>
+      </div>
+
+      <div class="moat-item">
+        <div class="moat-label">网络效应</div>
+        <span class="moat-rating wide">宽</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0 8px">超9亿年活跃买家 → 吸引更多商家 → 更多商品+更低价格 → 吸引更多买家。飞轮效应强劲。</p>
+
+      <div class="moat-item">
+        <div class="moat-label">转换成本</div>
+        <span class="moat-rating narrow">窄</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0 8px">消费者转换成本低（下载另一个App即可），但商家端有一定粘性。</p>
+
+      <div class="moat-item">
+        <div class="moat-label">成本优势</div>
+        <span class="moat-rating wide">宽</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0 8px">C2M模式 + 极简运营（17K员工 vs 阿里10万+）。34%运营利润率远超同行。这是PDD最强的护城河。</p>
+
+      <div class="moat-item">
+        <div class="moat-label">无形资产</div>
+        <span class="moat-rating narrow">窄</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0 8px">品牌在下沉市场认知度极高，但品牌溢价能力有限；没有显著的专利壁垒。</p>
+
+      <div class="moat-item">
+        <div class="moat-label">有效规模</div>
+        <span class="moat-rating narrow">窄</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0 8px">"极致性价比"定位空间有限，容不下太多同质竞争者。</p>
+
+      <div class="highlight-box" style="margin-top:1rem">
+        <div class="hl-label">护城河总评</div>
+        <p><strong style="color:var(--green);font-size:1rem">宽护城河</strong> — 核心靠成本优势和网络效应</p>
+        <p style="margin-top:0.5rem;font-size:0.85rem"><strong>趋势：</strong>国内稳定，海外面临侵蚀风险。10年后这条护城河会更宽还是更窄？取决于供应链投资和Temu本地化的成败。目前判断：50/50。</p>
+      </div>
+    </section>
+
+    <!-- ══ Module 5: Financials ══ -->
+    <section class="module" id="financials">
+      <div class="module-header">
+        <div class="module-num n5">05</div>
+        <h2>财务深度分析</h2>
+      </div>
+
+      <h3>年度利润表趋势（RMB亿）</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>指标</th><th class="num">FY2021</th><th class="num">FY2022</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY2025</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>营收</td><td class="num">939.5</td><td class="num">1,305.6</td><td class="num">2,476.4</td><td class="num">3,938.4</td><td class="num">4,318.5</td></tr>
+            <tr><td>营收增速</td><td class="num">+57.9%</td><td class="num">+39.0%</td><td class="num">+89.7%</td><td class="num">+59.0%</td><td class="num">+9.7%</td></tr>
+            <tr><td>毛利润</td><td class="num">622.3</td><td class="num">990.9</td><td class="num">1,559.2</td><td class="num">2,399.4</td><td class="num">2,430.4</td></tr>
+            <tr><td>营业利润</td><td class="num">69.0</td><td class="num">304.0</td><td class="num">587.0</td><td class="num">1,084.2</td><td class="num">946.2</td></tr>
+            <tr><td>净利润</td><td class="num">77.7</td><td class="num">315.4</td><td class="num">600.3</td><td class="num">1,124.4</td><td class="num">993.6</td></tr>
+            <tr><td>EPS (稀释/RMB)</td><td class="num">5.44</td><td class="num">21.93</td><td class="num">41.15</td><td class="num">76.00</td><td class="num">67.04</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>利润率趋势</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>利润率</th><th class="num">FY2021</th><th class="num">FY2022</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY2025</th><th>趋势</th></tr></thead>
+          <tbody>
+            <tr><td>毛利率</td><td class="num">66.2%</td><td class="num">75.9%</td><td class="num">63.0%</td><td class="num">60.9%</td><td class="num">56.3%</td><td style="color:var(--red)">↓ 下降中</td></tr>
+            <tr><td>营业利润率</td><td class="num">7.3%</td><td class="num">23.3%</td><td class="num">23.7%</td><td class="num">27.5%</td><td class="num">21.9%</td><td style="color:var(--red)">↓ 回落</td></tr>
+            <tr><td>净利率</td><td class="num">8.3%</td><td class="num">24.2%</td><td class="num">24.2%</td><td class="num">28.6%</td><td class="num">23.0%</td><td style="color:var(--red)">↓ 回落</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-title">重要信号</div>
+        毛利率持续下降（年均-3.9%），反映Temu履约成本增加。2025年净利润下降12%，标志着从"增长+利润扩张"转入"战略投入+利润承压"阶段。
+      </div>
+
+      <h3>资产负债表健康度</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>指标</th><th class="num">数值</th><th>评价</th></tr></thead>
+          <tbody>
+            <tr><td>现金及短期投资</td><td class="num">RMB 4,223亿 / $596亿</td><td style="color:var(--green)">堡垒级别</td></tr>
+            <tr><td>净现金（每股）</td><td class="num">$596亿（$42/股）</td><td>占市值的42%</td></tr>
+            <tr><td>有息负债率 (D/E)</td><td class="num">0.01</td><td style="color:var(--green)">几乎无杠杆</td></tr>
+            <tr><td>流动比率</td><td class="num">2.45</td><td style="color:var(--green)">健康</td></tr>
+            <tr><td>长期负债/所有者盈余</td><td class="num">&lt;0.5x</td><td style="color:var(--green)">远优于巴菲特&lt;4x标准</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout success">
+        <div class="callout-title">巴菲特会说</div>
+        这张资产负债表是一座金库。$596亿净现金意味着即使所有业务停止，你买的每$100股票里有$42是纯现金。这家公司不需要任何人的钱。
+      </div>
+
+      <h3>关键财务比率</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>比率</th><th class="num">数值</th><th>评价</th></tr></thead>
+          <tbody>
+            <tr><td>ROE</td><td class="num">27.29%</td><td style="color:var(--green)">优秀（阿里~15%，京东~12%）</td></tr>
+            <tr><td>ROA</td><td class="num">10.42%</td><td>良好</td></tr>
+            <tr><td>ROIC</td><td class="num">15.89%</td><td>良好</td></tr>
+            <tr><td>FCF收益率</td><td class="num">11.04%</td><td style="color:var(--green)">极高</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>所有者盈余计算（FY2025估算）</h3>
+      <div class="code-block">净利润                           RMB 993.6亿
++ 折旧与摊销（估算）               ~RMB 50亿
++ 其他非现金费用（股权激励等）       ~RMB 30亿
+- 维护性资本开支（估算）            ~RMB 30亿
+─────────────────────────────────────────
+所有者盈余 ≈                       RMB 1,044亿 ≈ $145亿
+
+所有者盈余 / 市值 = 10.3%
+所有者盈余 / 企业价值 = 17.7%  ← 极具吸引力</div>
+
+      <h3>杜邦分析（ROE拆解）</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>组成部分</th><th class="num">数值</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>净利率</td><td class="num">23.0%</td><td>盈利能力强</td></tr>
+            <tr><td>资产周转率</td><td class="num">~0.45x</td><td>大量现金拖低周转率</td></tr>
+            <tr><td>财务杠杆</td><td class="num">~2.6x</td><td>主要来自经营性负债，非有息负债</td></tr>
+            <tr><td><strong>ROE</strong></td><td class="num"><strong>27.3%</strong></td><td style="color:var(--green)">纯靠高利润驱动——巴菲特最偏爱的ROE结构</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ Module 6: Earnings Call ══ -->
+    <section class="module" id="earningscall">
+      <div class="module-header">
+        <div class="module-num n6">06</div>
+        <h2>电话会分析</h2>
+      </div>
+
+      <h3>Q4 2025电话会核心信息（2026年3月25日）</h3>
+      <ol>
+        <li><strong>千亿供应链投资</strong> — 赵佳臻宣布未来三年投入RMB 1,000亿用于供应链基础设施，目标是"再造一个拼多多"</li>
+        <li><strong>"高质量发展"路线</strong> — 从激进的用户获取转向商家扶持、品牌化和供应链深化</li>
+        <li><strong>利润率波动将成常态</strong> — 管理层明确告知投资者，投资期与回报期的时间差会导致季度利润率持续波动</li>
+        <li><strong>Temu转型</strong> — 从全托管模式转向半托管 + 本地化模式，以应对关税和物流挑战</li>
+      </ol>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">措辞变化跟踪</div>
+        赵佳臻用了"全力以赴（all-in）"来形容供应链投入的决心——这种措辞在PDD历史上罕见。多次提及"挑战"和"不确定性"，但没有表现出恐慌。对Temu具体国家业绩拆分问题采取回避态度。
+      </div>
+
+      <h3>前期电话会对比</h3>
+      <ul>
+        <li><strong>Q2 2025</strong>：首次提出"高质量发展"框架</li>
+        <li><strong>Q3 2025</strong>：确认Temu增速放缓但强调"韧性"</li>
+        <li><strong>Q4 2025</strong>：将投资规模量化（千亿），信号更加清晰。百亿补贴商家计划已在推进中，基本兑现承诺。</li>
+      </ul>
+    </section>
+
+    <!-- ══ Module 7: Valuation ══ -->
+    <section class="module" id="valuation">
+      <div class="module-header">
+        <div class="module-num n7">07</div>
+        <h2>多模型估值（8种方法）</h2>
+      </div>
+
+      <h3>1. 相对估值</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>指标</th><th class="num">PDD</th><th class="num">阿里巴巴</th><th class="num">京东</th><th class="num">PDD 5年中位</th></tr></thead>
+          <tbody>
+            <tr><td>PE (TTM)</td><td class="num">10.4x</td><td class="num">23.4x</td><td class="num">14.2x</td><td class="num">~18x</td></tr>
+            <tr><td>Forward PE</td><td class="num">8.3x</td><td class="num">19.2x</td><td class="num">9.2x</td><td class="num">~15x</td></tr>
+            <tr><td>EV/EBITDA</td><td class="num">5.99x</td><td class="num">~12x</td><td class="num">~8x</td><td class="num">~12x</td></tr>
+            <tr><td>P/S</td><td class="num">2.29x</td><td class="num">—</td><td class="num">—</td><td class="num">~5x</td></tr>
+            <tr><td>EV/Revenue</td><td class="num">1.32x</td><td class="num">—</td><td class="num">—</td><td class="num">~4x</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>PDD在几乎所有估值指标上都处于<strong>历史最低分位</strong>，且显著低于同行。</p>
+
+      <h3>2. DCF（现金流折现）</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>情景</th><th class="num">增长率(Y1-5)</th><th class="num">WACC</th><th class="num">内在价值/股</th><th class="num">vs 现价</th></tr></thead>
+          <tbody>
+            <tr><td>悲观</td><td class="num">5%</td><td class="num">12%</td><td class="num">~$128</td><td class="num" style="color:var(--green)">+29%</td></tr>
+            <tr><td><strong>基准</strong></td><td class="num"><strong>10%</strong></td><td class="num"><strong>10%</strong></td><td class="num"><strong>~$195</strong></td><td class="num" style="color:var(--green)"><strong>+96%</strong></td></tr>
+            <tr><td>乐观</td><td class="num">15%</td><td class="num">9%</td><td class="num">~$290</td><td class="num" style="color:var(--green)">+191%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3. 所有者盈余收益率</h3>
+      <p>所有者盈余~$145亿 / 市值$1,413亿 = <strong>10.3%</strong>。以企业价值计算：$145亿 / $817亿 = <strong>17.7%</strong>。巴菲特通常要求>10%，PDD轻松达标。</p>
+
+      <h3>4. PEG比率</h3>
+      <p>PE 10.4x / 预期增长率~10% = <strong>PEG 1.04</strong>。PEG接近1.0被认为是合理估值。</p>
+
+      <h3>5. DDM</h3>
+      <p style="color:var(--text-dim)">不适用 — PDD目前不分红。</p>
+
+      <h3>6. NAV</h3>
+      <p>每股净现金$42 + 经营业务定价($99.54 - $42 = $57.55/股)。隐含经营P/E仅 <strong>5.3x</strong>——你几乎在用"免费"的价格买这个业务。</p>
+
+      <h3>7. 反向DCF</h3>
+      <div class="callout warning">
+        <div class="callout-title">市场在定价什么？</div>
+        当前股价隐含的未来5年增长率约为 <strong>-3%至0%</strong>（负增长！）。市场正在为"Temu大幅萎缩 + 国内增长停滞"的情景定价。如果PDD仅维持当前盈利不增长，就已经被低估。
+      </div>
+
+      <h3>8. 分部加总（SOTP）</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>业务板块</th><th>估值方法</th><th class="num">估值（$亿）</th></tr></thead>
+          <tbody>
+            <tr><td>拼多多主站</td><td>15x运营利润</td><td class="num">$1,350</td></tr>
+            <tr><td>Temu</td><td>2x收入</td><td class="num">$300</td></tr>
+            <tr><td>多多买菜</td><td>1x收入</td><td class="num">$50</td></tr>
+            <tr><td>净现金</td><td>面值</td><td class="num">$596</td></tr>
+            <tr><td><strong>SOTP总计</strong></td><td></td><td class="num"><strong>$2,296</strong></td></tr>
+            <tr><td>集团折价 (20%)</td><td></td><td class="num"><strong>~$130/股</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>估值汇总表</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>估值方法</th><th class="num">合理价值/股</th><th class="num">权重</th></tr></thead>
+          <tbody>
+            <tr><td>相对估值</td><td class="num">$120 — $160</td><td class="num">20%</td></tr>
+            <tr><td>DCF基准</td><td class="num">$195</td><td class="num">25%</td></tr>
+            <tr><td>所有者盈余收益率</td><td class="num">$102 — $128</td><td class="num">20%</td></tr>
+            <tr><td>PEG</td><td class="num">$121</td><td class="num">10%</td></tr>
+            <tr><td>反向DCF</td><td class="num">&gt;$99（零增长即低估）</td><td class="num">15%</td></tr>
+            <tr><td>SOTP</td><td class="num">$130</td><td class="num">10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-box">
+        <div class="hl-label">加权合理价值</div>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--heading);font-family:'JetBrains Mono',monospace">$140 — $150 / 股</p>
+        <p style="margin-top:0.5rem;font-size:0.85rem">当前价$99.54 → <strong style="color:var(--green)">安全边际约 33-36%</strong></p>
+      </div>
+    </section>
+
+    <!-- ══ Module 8: Competition ══ -->
+    <section class="module" id="competition">
+      <div class="module-header">
+        <div class="module-num n8">08</div>
+        <h2>竞争与行业分析</h2>
+      </div>
+
+      <h3>中国电商市场份额（2024 GMV口径）</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>平台</th><th class="num">份额</th><th>趋势</th></tr></thead>
+          <tbody>
+            <tr><td>淘宝天猫</td><td class="num">~42%</td><td style="color:var(--red)">↓ 缓慢下降</td></tr>
+            <tr><td><strong>拼多多</strong></td><td class="num"><strong>~23%</strong></td><td style="color:var(--green)"><strong>↑ 持续上升</strong></td></tr>
+            <tr><td>京东</td><td class="num">~18%</td><td>→ 稳定</td></tr>
+            <tr><td>抖音电商</td><td class="num">~10%</td><td style="color:var(--green)">↑ 快速上升</td></tr>
+            <tr><td>其他</td><td class="num">~7%</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>核心竞争者对比</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>指标</th><th class="num">PDD</th><th class="num">阿里巴巴</th><th class="num">京东</th></tr></thead>
+          <tbody>
+            <tr><td>FY2025营收</td><td class="num">RMB 4,319亿</td><td class="num">~RMB 9,500亿</td><td class="num">~RMB 11,000亿</td></tr>
+            <tr><td>营业利润率</td><td class="num" style="color:var(--green)">21.9%</td><td class="num">~15%</td><td class="num">~3%</td></tr>
+            <tr><td>员工数</td><td class="num" style="color:var(--green)">~17K</td><td class="num">~100K+</td><td class="num">~500K+</td></tr>
+            <tr><td>PE</td><td class="num" style="color:var(--green)">10.4x</td><td class="num">23.4x</td><td class="num">14.2x</td></tr>
+            <tr><td>战略方向</td><td class="num">供应链+出海</td><td class="num">AI+云计算</td><td class="num">供应链+欧洲</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>波特五力分析</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>力量</th><th>强度</th><th>分析</th></tr></thead>
+          <tbody>
+            <tr><td>供应商议价力</td><td style="color:var(--green)">低</td><td>PDD聚合海量需求，制造商依赖平台获取订单</td></tr>
+            <tr><td>买方议价力</td><td style="color:var(--yellow)">中等</td><td>消费者转换成本低，但价格优势形成粘性</td></tr>
+            <tr><td>替代品威胁</td><td style="color:var(--yellow)">中等</td><td>直播电商（抖音）、线下零售、其他平台</td></tr>
+            <tr><td>新进入者威胁</td><td style="color:var(--green)">低</td><td>建立同等规模供应链需要巨量资本和时间</td></tr>
+            <tr><td>行业内竞争</td><td style="color:var(--red)">高</td><td>阿里反击、抖音崛起、全行业价格战</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ Module 9: Technical ══ -->
+    <section class="module" id="technical">
+      <div class="module-header">
+        <div class="module-num n9">09</div>
+        <h2>技术面与K线分析</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">注意</div>
+        巴菲特本人不使用技术分析。本节作为完整性补充，供交易型投资者参考。
+      </div>
+
+      <h3>关键支撑与阻力位</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>类型</th><th class="num">价位</th><th>依据</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--green)">强支撑</td><td class="num">$87</td><td>52周最低点</td></tr>
+            <tr><td style="color:var(--green)">支撑1</td><td class="num">$90</td><td>近期关税恐慌低点</td></tr>
+            <tr><td style="color:var(--green)">支撑2</td><td class="num">$95</td><td>心理整数位</td></tr>
+            <tr><td style="color:var(--red)">阻力1</td><td class="num">$110</td><td>前期密集成交区</td></tr>
+            <tr><td style="color:var(--red)">阻力2</td><td class="num">$120</td><td>100日均线附近</td></tr>
+            <tr><td style="color:var(--red)">强阻力</td><td class="num">$130 — $135</td><td>50日均线 + 前期平台</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>技术指标</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>指标</th><th class="num">数值</th><th>解读</th></tr></thead>
+          <tbody>
+            <tr><td>RSI(14)</td><td class="num">~35-40</td><td style="color:var(--yellow)">接近超卖区</td></tr>
+            <tr><td>MACD</td><td class="num">死叉中</td><td style="color:var(--red)">空头信号</td></tr>
+            <tr><td>布林带</td><td class="num">下轨附近</td><td style="color:var(--yellow)">极端位置，可能反弹</td></tr>
+            <tr><td>Beta</td><td class="num">0.06</td><td>低beta，与大盘关联度低</td></tr>
+            <tr><td>均线排列</td><td class="num">空头排列</td><td style="color:var(--red)">股价低于所有均线</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>股价从2025年11月高点$139持续下跌约30%，处于下降通道中。$87-$90区域是关键支撑。</p>
+    </section>
+
+    <!-- ══ Module 10: Catalysts ══ -->
+    <section class="module" id="catalysts">
+      <div class="module-header">
+        <div class="module-num n10">10</div>
+        <h2>增长催化剂与前景展望</h2>
+      </div>
+
+      <h3>短期催化剂（未来6个月）</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>催化剂</th><th>时间</th><th>影响方向</th></tr></thead>
+          <tbody>
+            <tr><td>Q1 2026财报</td><td>2026年6月</td><td style="color:var(--green)">验证收入增速是否持续回升</td></tr>
+            <tr><td>中美贸易谈判进展</td><td>持续中</td><td style="color:var(--green)">关税缓和将大幅提振股价</td></tr>
+            <tr><td>Temu本地化进展</td><td>持续中</td><td>降低关税依赖的关键</td></tr>
+            <tr><td>千亿投资初步成果</td><td>2026 H2</td><td>验证战略投入有效性</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>长期增长驱动力（3-5年）</h3>
+      <ul>
+        <li><strong>供应链深化</strong> — 千亿投资计划如果成功，将构建更深的制造业护城河</li>
+        <li><strong>Temu本地化</strong> — 从跨境直邮转向本地仓配，虽然更重但更可持续</li>
+        <li><strong>农业数字化</strong> — 1600万农户直连城市消费者，这个市场远未饱和</li>
+        <li><strong>品牌升级</strong> — "新拼多多"战略瞄准中高端消费者，拓宽价格带</li>
+      </ul>
+    </section>
+
+    <!-- ══ Module 11: Risk ══ -->
+    <section class="module" id="risk">
+      <div class="module-header">
+        <div class="module-num n11">11</div>
+        <h2>风险矩阵</h2>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>风险类型</th><th class="num">评分(1-5)</th><th>具体风险</th></tr></thead>
+          <tbody>
+            <tr><td>经营风险</td><td class="num">3</td><td>Temu本地化执行风险；千亿投资回报不确定；联合CEO结构的潜在摩擦</td></tr>
+            <tr><td>财务风险</td><td class="num" style="color:var(--green)">1</td><td>几乎无杠杆，$596亿净现金，财务风险极低</td></tr>
+            <tr><td>竞争风险</td><td class="num">3</td><td>抖音电商侵蚀市场份额；阿里反击；Amazon Haul等竞品</td></tr>
+            <tr><td>监管/政策风险</td><td class="num" style="color:var(--red)">5</td><td>美国54%对华关税 + de minimis取消；EU调查国家补贴 + DSA合规；中国反垄断</td></tr>
+            <tr><td>宏观风险</td><td class="num" style="color:var(--red)">4</td><td>中国消费疲软；中美贸易战升级；全球衰退风险</td></tr>
+            <tr><td>估值风险</td><td class="num" style="color:var(--green)">1</td><td>PE仅10x，EV/EBITDA仅6x，估值已极度压缩</td></tr>
+            <tr><td>地缘政治风险</td><td class="num" style="color:var(--red)">4</td><td>VIE结构；中概股退市风险；开曼注册的法律不确定性</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger" style="margin-top:1rem">
+        <div class="callout-title">黑天鹅情景</div>
+        <strong>最坏情况：</strong>美国对中国商品征收100%+关税并全面禁止Temu运营 + 欧盟处以全球收入6%的罚款 + 中国消费持续萎靡。Temu收入可能腰斩，公司整体收入下降15-20%，股价可能跌至$60-70。<strong>但$596亿净现金保证公司不会倒闭。</strong>
+      </div>
+    </section>
+
+    <!-- ══ Module 12: Scorecard ══ -->
+    <section class="module" id="scorecard">
+      <div class="module-header">
+        <div class="module-num n12">12</div>
+        <h2>巴菲特计分卡与投资决策</h2>
+      </div>
+
+      <h3>巴菲特计分卡（满分36分）</h3>
+      <div class="scorecard-grid">
+        <div class="score-row"><span class="criteria">业务是否易于理解</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div><span class="score">3/3</span></div>
+        <div class="score-row"><span class="criteria">经营历史是否一致</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+        <div class="score-row"><span class="criteria">长期前景是否良好</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+        <div class="score-row"><span class="criteria">管理层坦诚与理性</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+        <div class="score-row"><span class="criteria">主人翁经营心态</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+        <div class="score-row"><span class="criteria">高ROE低负债</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div><span class="score">3/3</span></div>
+        <div class="score-row"><span class="criteria">强劲自由现金流</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div><span class="score">3/3</span></div>
+        <div class="score-row"><span class="criteria">宽广经济护城河</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+        <div class="score-row"><span class="criteria">保守会计处理</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+        <div class="score-row"><span class="criteria">存在安全边际</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div><span class="score">3/3</span></div>
+        <div class="score-row"><span class="criteria">定价能力（抗通胀）</span><div class="dots"><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div><span class="score">1/3</span></div>
+        <div class="score-row"><span class="criteria">低资本再投入需求</span><div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div><span class="score">2/3</span></div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;margin:1.5rem 0;padding:1rem;background:var(--bg-alt);border-radius:var(--radius)">
+        <div class="grade-badge b">B</div>
+        <div>
+          <div style="font-weight:700;color:var(--heading);font-size:1.1rem">总分 27/36 — 优秀公司</div>
+          <div style="font-size:0.82rem;color:var(--text-secondary)">A(30-36) 杰出 &middot; B(24-29) 优秀 &middot; C(18-23) 一般 &middot; D(12-17) 令人担忧</div>
+        </div>
+      </div>
+
+      <!-- ── Investment Decision ── -->
+      <h3>投资决策</h3>
+
+      <div class="decision-box">
+        <div class="decision-header">
+          <div class="decision-rating">买入</div>
+          <div class="decision-price">
+            <div class="current">$99.54</div>
+            <div class="target">加权目标价 <strong>$125</strong> &nbsp; | &nbsp; 潜在回报 <strong style="color:var(--green)">+25.6%</strong></div>
+          </div>
+        </div>
+
+        <h3>12个月目标价</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>情景</th><th class="num">目标价</th><th class="num">概率</th><th>逻辑</th></tr></thead>
+            <tbody>
+              <tr><td>乐观</td><td class="num" style="color:var(--green)">$160</td><td class="num">25%</td><td>中美关税缓和 + Temu本地化成功</td></tr>
+              <tr><td><strong>基准</strong></td><td class="num"><strong>$130</strong></td><td class="num"><strong>50%</strong></td><td>业绩平稳 + 估值从极度低估回归合理</td></tr>
+              <tr><td>悲观</td><td class="num" style="color:var(--red)">$75</td><td class="num">25%</td><td>关税持续升级 + Temu欧美萎缩</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>分批建仓策略</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>建仓</th><th class="num">价位</th><th class="num">仓位占比</th></tr></thead>
+            <tbody>
+              <tr><td>首仓</td><td class="num">$95 — $100（当前区间）</td><td class="num">30%</td></tr>
+              <tr><td>二仓</td><td class="num">$85 — $90（接近52周低点）</td><td class="num">40%</td></tr>
+              <tr><td>三仓</td><td class="num">$75 — $80（黑天鹅加仓位）</td><td class="num">30%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>止盈止损策略</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>操作</th><th class="num">价位</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td style="color:var(--green)">第一档止盈</td><td class="num">$130 — $140</td><td>减仓1/3，锁定利润</td></tr>
+              <tr><td style="color:var(--green)">第二档止盈</td><td class="num">$150 — $160</td><td>再减1/3</td></tr>
+              <tr><td>核心仓位</td><td class="num">长期持有</td><td>基本面改善则保留1/3</td></tr>
+              <tr><td style="color:var(--red)">止损位</td><td class="num">$70</td><td>买入均价下方~25%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>仓位管理</h3>
+        <ul>
+          <li><strong>建议仓位：</strong>占投资组合的3-5%（因地缘政治风险，不宜过重）</li>
+          <li><strong>建议持有周期：</strong>中长期（2-3年+）</li>
+          <li><strong>适合投资者：</strong>能承受30-40%短期波动、看好中国消费和价值投资的投资者</li>
+        </ul>
+
+        <h3>关键监控指标</h3>
+        <ol>
+          <li>Temu各市场MAU和GMV趋势</li>
+          <li>国内拼多多主站收入增速</li>
+          <li>季度利润率变化（千亿投入后是否回升）</li>
+          <li>中美贸易政策动态</li>
+          <li>欧盟对Temu的监管裁决</li>
+          <li>自由现金流趋势</li>
+          <li>管理层回购或分红计划</li>
+        </ol>
+
+        <h3>事件时间表</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>时间</th><th>事件</th></tr></thead>
+            <tbody>
+              <tr><td>2026年6月</td><td>Q1 2026财报（关键验证点）</td></tr>
+              <tr><td>2026年持续</td><td>中美关税谈判进展</td></tr>
+              <tr><td>2026年H2</td><td>千亿供应链投资首批成果</td></tr>
+              <tr><td>2026年持续</td><td>EU DSA调查和补贴调查进展</td></tr>
+              <tr><td>2027年3月</td><td>FY2026全年财报</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══ Disclaimer ══ -->
+    <div class="disclaimer">
+      <strong>免责声明：</strong>本分析仅供教育和研究用途，不构成投资建议。"巴菲特"视角是一个受沃伦·巴菲特公开表述的投资原则启发的分析框架——它并不代表沃伦·巴菲特本人对任何具体公司的观点。所有投资都有风险，请在做出投资决策前咨询合格的财务顾问。
+    </div>
+
+    <!-- ══ Footer ══ -->
+    <footer class="page-footer">
+      <p>Generated by <strong>巴菲特神谕分析师</strong> &middot; <a href="https://github.com/JaceXie" target="_blank" rel="noopener">@JaceXie</a></p>
+      <p style="margin-top:4px">分析日期：2026-04-08 &middot; 数据来源：SEC Filing, Yahoo Finance, StockAnalysis, TipRanks</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- ══ Back to Top ══ -->
+<button class="back-to-top" id="backToTop" title="回到顶部" aria-label="Back to top">&#8593;</button>
+
+<!-- ═══════════════════════════════
+     Scripts
+     ═══════════════════════════════ -->
+<script>
+(function() {
+  // ── Theme Toggle ──
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+
+  const saved = localStorage.getItem('pdd-theme');
+  if (saved) {
+    html.setAttribute('data-theme', saved);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  function updateIcon() {
+    icon.innerHTML = html.getAttribute('data-theme') === 'dark' ? '&#9788;' : '&#9790;';
+  }
+  updateIcon();
+
+  toggle.addEventListener('click', function() {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('pdd-theme', next);
+    updateIcon();
+  });
+
+  // ── Sidebar Active State ──
+  const sections = document.querySelectorAll('.module, .verdict, .hero');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+  function updateActive() {
+    let current = '';
+    sections.forEach(function(section) {
+      const top = section.offsetTop - 100;
+      if (window.scrollY >= top) {
+        current = section.id;
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+
+  // ── Back to Top ──
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Smooth scroll for sidebar ──
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
